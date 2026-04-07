@@ -1,7 +1,9 @@
 package Tests;
 
+import Pages.LoginPage;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
@@ -9,25 +11,20 @@ public class LoginTest extends BaseTest {
 
     @Test
     public void checkLogin() {
-        driver.get("https://www.saucedemo.com/");
-        driver.findElement(By.cssSelector("#user-name")).sendKeys("standard_user");
-        driver.findElement(By.xpath("//*[@placeholder='Password']")).sendKeys("secret_sauce");
-        driver.findElement(By.cssSelector("#login-button")).click();
-        String title = driver.findElement(By.cssSelector("[data-test='title']")).getText();
-        assertEquals(title, "Products");
+        LoginPage.open();
+        LoginPage.login("standard_user", "secret_sauce");
+
+        assertEquals(ProductsPage.getTitle(), "Products");
     }
 
     @Test
     public void checkIncorrectLogin() {
-        driver.get("https://www.saucedemo.com/");
-        driver.findElement(By.cssSelector("#user-name")).sendKeys("locked_out_user");
-        driver.findElement(By.xpath("//*[@placeholder='Password']")).sendKeys("secret_sauce");
-        driver.findElement(By.cssSelector("#login-button")).click();
-        boolean isErrorMsgDisplayed = driver.findElement(By.xpath("//*[@data-test='error']")).isDisplayed();
-        assertTrue(isErrorMsgDisplayed, "The error message is failed to appear");
-        String title = driver.findElement(By.xpath("//h3[contains(text(), 'Epic sadface: Sorry, this user has been locked out.')]")).getText();
-        System.out.println("MY VALUE: " + title);
-        assertEquals(title, "Epic sadface: Sorry, this user has been locked out.");
+        LoginPage.open();
+        LoginPage.login("locked_out_user", "secret_sauce");
+
+        assertTrue(LoginPage.isErrorMsgDisplayed(), "The error message is failed to appear");
+        LoginPage.getErrorTitle();
+
+        assertEquals(LoginPage.getErrorTitle(), "Epic sadface: Sorry, this user has been locked out.");
     }
 }
-
