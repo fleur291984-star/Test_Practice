@@ -12,8 +12,8 @@ import java.time.Duration;
 
 public class BaseTest {
     public WebDriver driver;
-    LoginPage LoginPage;
-    ProductsPage ProductsPage;
+    LoginPage loginPage;
+    ProductsPage productsPage;
 
     @BeforeMethod
     public void setup() {
@@ -23,8 +23,8 @@ public class BaseTest {
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-        LoginPage = new LoginPage(driver);
-        ProductsPage = new ProductsPage(driver);
+        loginPage = new LoginPage(driver);
+        productsPage = new ProductsPage(driver);
     }
 
     @AfterMethod

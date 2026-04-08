@@ -9,20 +9,20 @@ public class LoginTest extends BaseTest {
 
     @Test
     public void checkLogin() {
-        LoginPage.open();
-        LoginPage.login("standard_user", "secret_sauce");
+        loginPage.open();
+        loginPage.login("standard_user", "secret_sauce");
 
-        assertEquals(ProductsPage.getTitle(), "Products");
+        assertEquals(productsPage.getTitle(), "Products");
     }
 
     @Test
     public void checkIncorrectLogin() {
-        LoginPage.open();
-        LoginPage.login("locked_out_user", "secret_sauce");
+        loginPage.open();
+        loginPage.login("locked_out_user", "secret_sauce");
 
-        assertTrue(LoginPage.isErrorMsgDisplayed(), "The error message is failed to appear");
-        LoginPage.getErrorTitle();
+        assertTrue(loginPage.isErrorMsgDisplayed(), "The error message is failed to appear");
+        loginPage.getErrorTitle();
 
-        assertEquals(LoginPage.getErrorTitle(), "Epic sadface: Sorry, this user has been locked out.");
+        assertEquals(loginPage.getErrorTitle(), "Epic sadface: Sorry, this user has been locked out.");
     }
 }
