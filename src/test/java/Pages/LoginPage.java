@@ -3,26 +3,32 @@ package Pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class LoginPage {
-    WebDriver driver;
+public class LoginPage extends BasePage {
     private final By userField = By.cssSelector("#user-name");
     private final By passwordField = By.xpath("//*[@placeholder='Password']");
     private final By submitButton = By.cssSelector("#login-button");
     private final By errorMsg = By.xpath("//*[@data-test='error']");
-    private final By errorMsgTitle = By.xpath("//h3[contains(text(), 'Epic sadface: Sorry, this user has been locked out.')]");
 
     public LoginPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
 
     public void open() {
-        driver.get("https://www.saucedemo.com/");
+        driver.get(BASE_URL);
     }
 
     public void login(String login, String password) {
-        driver.findElement(userField).sendKeys(login);
-        driver.findElement(passwordField).sendKeys(password);
+        fillInLoginField(login);
+        fillInPassField(password);
         driver.findElement(submitButton).click();
+    }
+
+    public void fillInLoginField(String login) {
+        driver.findElement(userField).sendKeys(login);
+    }
+
+    public void fillInPassField(String password) {
+        driver.findElement(passwordField).sendKeys(password);
     }
 
     public boolean isErrorMsgDisplayed() {
@@ -30,6 +36,6 @@ public class LoginPage {
     }
 
     public String getErrorTitle() {
-        return driver.findElement(errorMsgTitle).getText();
+        return driver.findElement(errorMsg).getText();
     }
 }
