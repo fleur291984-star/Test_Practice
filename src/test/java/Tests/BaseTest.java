@@ -1,5 +1,6 @@
 package Tests;
 
+import Pages.CartPage;
 import Pages.LoginPage;
 import Pages.ProductsPage;
 import org.openqa.selenium.WebDriver;
@@ -14,6 +15,7 @@ public class BaseTest {
     public WebDriver driver;
     LoginPage loginPage;
     ProductsPage productsPage;
+    CartPage cartPage;
 
     @BeforeMethod
     public void setup() {
@@ -25,6 +27,7 @@ public class BaseTest {
 
         loginPage = new LoginPage(driver);
         productsPage = new ProductsPage(driver);
+        cartPage = new CartPage(driver);
     }
 
     @AfterMethod
