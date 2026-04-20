@@ -1,4 +1,4 @@
-package Tests;
+package tests;
 
 import org.testng.annotations.Test;
 
@@ -11,7 +11,7 @@ public class CartTest extends BaseTest {
     public void checkCartTitle() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
-        productsPage.cartContainerClick();
+        productsPage.navigationPanel.cartContainerClick();
         assertEquals(cartPage.getTitle(), "Your Cart");
     }
 
@@ -20,7 +20,7 @@ public class CartTest extends BaseTest {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
         productsPage.addToCart(goodsName);
-        productsPage.cartContainerClick();
+        productsPage.navigationPanel.cartContainerClick();
         assertFalse(cartPage.getProductNames().isEmpty());
         assertEquals(cartPage.getProductNames().size(), 1);
         assertTrue(cartPage.getProductNames().contains(goodsName));

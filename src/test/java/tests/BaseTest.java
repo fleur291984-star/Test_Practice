@@ -1,8 +1,9 @@
-package Tests;
+package tests;
 
-import Pages.CartPage;
-import Pages.LoginPage;
-import Pages.ProductsPage;
+import pages.CartPage;
+import pages.LoginPage;
+import pages.NavigationPanel;
+import pages.ProductsPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -16,6 +17,7 @@ public class BaseTest {
     LoginPage loginPage;
     ProductsPage productsPage;
     CartPage cartPage;
+    NavigationPanel navigationPanel;
 
     @BeforeMethod
     public void setup() {
@@ -28,6 +30,7 @@ public class BaseTest {
         loginPage = new LoginPage(driver);
         productsPage = new ProductsPage(driver);
         cartPage = new CartPage(driver);
+        navigationPanel = new NavigationPanel(driver);
     }
 
     @AfterMethod
