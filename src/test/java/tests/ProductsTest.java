@@ -25,6 +25,6 @@ public class ProductsTest extends BaseTest {
         }
         assertEquals(productsPage.navigationPanel.checkCounterValue(), "4");
         assertEquals(productsPage.navigationPanel.checkCounterColor(), "rgba(226, 35, 26, 1)");
-        navigationPanel.cartContainerClick();
+        productsPage.navigationPanel.cartContainerClick();
     }
 }

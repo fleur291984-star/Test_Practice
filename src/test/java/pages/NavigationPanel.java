@@ -3,9 +3,10 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import static pages.BasePage.DATA_TEST_PATTERN;
+
 public class NavigationPanel {
     private WebDriver driver;
-    public static final String DATA_TEST_PATTERN = "[data-test='%s']";
     private final By cartContainer = By.id("shopping_cart_container");
     private final By cartBadge = By.cssSelector(DATA_TEST_PATTERN.formatted("shopping-cart-badge"));
 
