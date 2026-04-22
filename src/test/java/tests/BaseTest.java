@@ -1,8 +1,8 @@
-package Tests;
+package tests;
 
-import Pages.CartPage;
-import Pages.LoginPage;
-import Pages.ProductsPage;
+import pages.CartPage;
+import pages.LoginPage;
+import pages.ProductsPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
