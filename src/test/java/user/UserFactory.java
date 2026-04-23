@@ -22,14 +22,10 @@ public class UserFactory {
     }
 
     public static User withEmptyLogin() {
-        return new User(
-                "",
-                PropertyReader.getProperty("saucedemoo.password"));
+        return new User("", PropertyReader.getProperty("saucedemoo.password"));
     }
 
     public static User withEmptyPassword() {
-        return new User(
-                PropertyReader.getProperty("saucedemoo.user"),
-                "");
+        return new User(PropertyReader.getProperty("saucedemoo.user"), "");
     }
 }
