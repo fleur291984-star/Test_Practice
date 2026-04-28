@@ -55,4 +55,16 @@ public class PropertyReader {
     public static String getProperty(String propertyName) {
         return loadProperties().getProperty(propertyName);
     }
+
+    public static int getPropertyInt(String propertyName) {
+        String value = getProperty(propertyName);
+        if (value == null) {
+            return 0;
+        }
+        try {
+            return Integer.parseInt(value.trim());
+        } catch (NumberFormatException e) {
+            return 0;
+        }
+    }
 }

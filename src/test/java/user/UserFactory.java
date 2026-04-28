@@ -28,4 +28,11 @@ public class UserFactory {
     public static User withEmptyPassword() {
         return new User(PropertyReader.getProperty("saucedemoo.user"), "");
     }
+
+    public static User withCheckoutInfo() {
+        return new User(
+                    PropertyReader.getProperty("saucedemoo.first.name"),
+                    PropertyReader.getProperty("saucedemoo.last.name"),
+                    PropertyReader.getPropertyInt("saucedemoo.postal.code"));
+        }
 }

@@ -1,8 +1,10 @@
 package tests;
 
-import pages.CartPage;
-import pages.LoginPage;
-import pages.ProductsPage;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
+import pages.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -16,18 +18,30 @@ public class BaseTest {
     LoginPage loginPage;
     ProductsPage productsPage;
     CartPage cartPage;
+    CheckoutPage checkoutPage;
+    CheckOverviewPage checkOverviewPage;
 
+    @Parameters({"browser"})
     @BeforeMethod
-    public void setup() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("start-maximized");
-        options.addArguments("headless");
-        driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+    public void setup(@Optional("chrome") String browser) {
+        if (browser.equalsIgnoreCase("chrome")) {
+            ChromeOptions options = new ChromeOptions();
+            options.addArguments("start-maximized");
+            options.addArguments("headless");
+            options.addArguments("guest");
+
+            driver = new ChromeDriver(options);
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        } else if (browser.equalsIgnoreCase("edge")) {
+            WebDriverManager.edgedriver().setup();
+            driver = new EdgeDriver();
+        }
 
         loginPage = new LoginPage(driver);
         productsPage = new ProductsPage(driver);
         cartPage = new CartPage(driver);
+        checkoutPage = new CheckoutPage(driver);
+        checkOverviewPage = new CheckOverviewPage(driver);
     }
 
     @AfterMethod

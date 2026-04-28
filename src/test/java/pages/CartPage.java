@@ -12,6 +12,7 @@ public class CartPage extends BasePage {
     private final By pageTitle = By.cssSelector(DATA_TEST_PATTERN.formatted("title"));
     private final By product = By.cssSelector(".inventory_item_name");
     private final By elementsWait = By.id("continue-shopping");
+    private final By buttonCheckout = By.id("checkout");
 
     public CartPage(WebDriver driver) {
         super(driver);
@@ -30,5 +31,9 @@ public class CartPage extends BasePage {
             names.add(product.getText());
         }
         return names;
+    }
+
+    public void buttonCheckoutClick() {
+        driver.findElement(buttonCheckout).click();
     }
 }
