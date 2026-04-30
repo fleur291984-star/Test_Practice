@@ -11,7 +11,6 @@ import java.util.List;
 public class CheckOverviewPage extends BasePage {
     private final By pageTitle = By.cssSelector(DATA_TEST_PATTERN.formatted("title"));
     private final By product = By.cssSelector(".inventory_item_name");
-    private final By productPrice = By.cssSelector(".inventory-item-price");
     private final By paymentInfo = By.xpath("//div[@data-test = 'payment-info-value']");
     private final By shippingInfo = By.xpath("//div[@data-test = 'shipping-info-value']");
     private final By itemTotal = By.xpath("//div[@data-test = 'subtotal-label']");
