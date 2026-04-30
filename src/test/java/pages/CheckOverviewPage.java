@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -22,10 +23,12 @@ public class CheckOverviewPage extends BasePage {
         super(driver);
     }
 
+    @Step("Получить заголовок страницы")
     public String getTitle() {
         return driver.findElement(pageTitle).getText();
     }
 
+    @Step("Получить названия продуктов")
     public ArrayList<String> getProductNameView() {
         List<WebElement> allProducts = driver.findElements(product);
         ArrayList<String> names = new ArrayList<>();
@@ -36,20 +39,32 @@ public class CheckOverviewPage extends BasePage {
         return names;
     }
 
+    @Step("Получить текст поля {paymentInfo}")
     public String getPaymentInfo() {
         return driver.findElement(paymentInfo).getText();
     }
 
-    public String getShippingInfo() { return driver.findElement(shippingInfo).getText(); }
+    @Step("Получить текст поля {shippingInfo}")
+    public String getShippingInfo() {
+        return driver.findElement(shippingInfo).getText();
+    }
 
+    @Step("Проверить отображение итоговой суммы товаров (itemTotal)")
     public boolean itemTotalIsDisplayed() {
         return driver.findElement(itemTotal).isDisplayed();
     }
 
-    public boolean taxIsDisplayed() { return driver.findElement(tax).isDisplayed(); }
+    @Step("Проверить отображение налога (tax)")
+    public boolean taxIsDisplayed() {
+        return driver.findElement(tax).isDisplayed();
+    }
 
-    public boolean totalIsDisplayed() { return driver.findElement(total).isDisplayed(); }
+    @Step("Проверить отображение итоговой суммы товаров с налогом (total)")
+    public boolean totalIsDisplayed() {
+        return driver.findElement(total).isDisplayed();
+    }
 
+    @Step("Нажать на кнопку Finish")
     public void buttonFinishClick() {
         driver.findElement(buttonFinish).click();
     }

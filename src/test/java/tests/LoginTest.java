@@ -1,5 +1,6 @@
 package tests;
 
+import io.qameta.allure.*;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import user.User;
@@ -8,8 +9,12 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 import static user.UserFactory.*;
 
+@Epic("Авторизация")
 public class LoginTest extends BaseTest {
 
+    @Feature("Вход в систему")
+    @Story("Успешный вход под администратором")
+    @Severity(SeverityLevel.BLOCKER)
     @Test
     public void checkLogin() {
         loginPage.open();
@@ -17,6 +22,9 @@ public class LoginTest extends BaseTest {
         assertEquals(productsPage.getTitle(), "Products");
     }
 
+    @Feature("Вход в систему")
+    @Story("Валидация полей при входе")
+    @Severity(SeverityLevel.NORMAL)
     @Test(dataProvider = "incorrectData")
     public void checkIncorrectLogin(User user, String errorMSG) {
         loginPage.open();

@@ -1,6 +1,8 @@
 package tests;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.qameta.allure.Owner;
+import io.qameta.allure.Step;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
@@ -13,6 +15,7 @@ import org.testng.annotations.BeforeMethod;
 
 import java.time.Duration;
 
+@Owner("Марина Парфенова")
 public class BaseTest {
     public WebDriver driver;
     LoginPage loginPage;
@@ -21,6 +24,7 @@ public class BaseTest {
     CheckoutPage checkoutPage;
     CheckOverviewPage checkOverviewPage;
 
+    @Step("Открытие браузера")
     @Parameters({"browser"})
     @BeforeMethod
     public void setup(@Optional("chrome") String browser) {
@@ -44,6 +48,7 @@ public class BaseTest {
         checkOverviewPage = new CheckOverviewPage(driver);
     }
 
+    @Step("Закрытие браузера")
     @AfterMethod
     public void close() {
         driver.quit();
