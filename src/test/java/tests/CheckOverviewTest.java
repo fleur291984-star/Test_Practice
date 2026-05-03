@@ -1,5 +1,6 @@
 package tests;
 
+import io.qameta.allure.*;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
@@ -7,9 +8,13 @@ import static org.testng.Assert.assertTrue;
 import static user.UserFactory.withAdminPermission;
 import static user.UserFactory.withCheckoutInfo;
 
+@Epic("Покупательский цикл")
 public class CheckOverviewTest extends BaseTest {
     final String goodsName = "Sauce Labs Backpack";
 
+    @Feature("Оформление заказа (Checkout)")
+    @Story("Проверка сводной информации по заказу (Overview)")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void checkGoodsOverview() {
         loginPage.open();

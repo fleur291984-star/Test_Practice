@@ -5,14 +5,14 @@ public class User {
     private String password;
     private String firstName;
     private String lastName;
-    private int postalCode;
+    private String postalCode;
 
     public User(String login, String password) {
         this.login = login;
         this.password = password;
     }
 
-    public User(String firstName, String lastName, int postalCode) {
+    public User(String firstName, String lastName, String postalCode) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.postalCode = postalCode;
@@ -34,7 +34,7 @@ public class User {
         return lastName;
     }
 
-    public int getPostalCode() {
+    public String getPostalCode() {
         return postalCode;
     }
 }

@@ -3,6 +3,7 @@ package user;
 import utils.PropertyReader;
 
 public class UserFactory {
+
     public static User withAdminPermission() {
         return new User(
                 PropertyReader.getProperty("saucedemoo.user"),
@@ -31,8 +32,23 @@ public class UserFactory {
 
     public static User withCheckoutInfo() {
         return new User(
-                    PropertyReader.getProperty("saucedemoo.first.name"),
-                    PropertyReader.getProperty("saucedemoo.last.name"),
-                    PropertyReader.getPropertyInt("saucedemoo.postal.code"));
-        }
+                PropertyReader.getProperty("saucedemoo.first.name"),
+                PropertyReader.getProperty("saucedemoo.last.name"),
+                PropertyReader.getProperty("saucedemoo.postal.code"));
+    }
+
+    public static User withEmptyFirstName() {
+        return new User("", PropertyReader.getProperty("saucedemoo.last.name"),
+                PropertyReader.getProperty("saucedemoo.postal.code"));
+    }
+
+    public static User withEmptyLastName() {
+        return new User(PropertyReader.getProperty("saucedemoo.first.name"),
+                "", PropertyReader.getProperty("saucedemoo.postal.code"));
+    }
+
+    public static User withEmptyPostalCode() {
+        return new User(PropertyReader.getProperty("saucedemoo.first.name"),
+                PropertyReader.getProperty("saucedemoo.last.name"), "");
+    }
 }
