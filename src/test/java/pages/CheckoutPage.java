@@ -23,11 +23,13 @@ public class CheckoutPage extends BasePage {
     }
 
     @Step("Заполнить форму Checkout и нажать Continue")
-    public void checkout(User user) {
+    public CheckoutPage checkout(User user) {
         fillInFirstNameField(user.getFirstName());
         fillInLastNameField(user.getLastName());
         fillInPostalCodeField(user.getPostalCode());
         driver.findElement(buttonContinue).click();
+
+        return this;
     }
 
     @Step("Ввести имя: {firstName}")
@@ -50,8 +52,8 @@ public class CheckoutPage extends BasePage {
         return driver.findElement(errorMsg).isDisplayed();
     }
 
-    @Step("Получить текст ошибки")
+   @Step("Получить текст ошибки")
     public String getErrorTitle() {
         return driver.findElement(errorMsg).getText();
-    }
+   }
 }

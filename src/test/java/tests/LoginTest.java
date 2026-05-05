@@ -5,6 +5,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import user.User;
 
+import static enums.TitleNaming.PRODUCTS;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 import static user.UserFactory.*;
@@ -17,9 +18,10 @@ public class LoginTest extends BaseTest {
     @Severity(SeverityLevel.BLOCKER)
     @Test
     public void checkLogin() {
-        loginPage.open();
-        loginPage.login(withAdminPermission());
-        assertEquals(productsPage.getTitle(), "Products");
+        loginPage
+                .open()
+                .login(withAdminPermission());
+        assertEquals(productsPage.getTitle(), PRODUCTS.getDisplayName());
     }
 
     @Feature("Вход в систему")
@@ -27,8 +29,9 @@ public class LoginTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     @Test(dataProvider = "incorrectData")
     public void checkIncorrectLogin(User user, String errorMSG) {
-        loginPage.open();
-        loginPage.login(user);
+        loginPage
+                .open()
+                .login(user);
         assertTrue(loginPage.isErrorMsgDisplayed(), "The error message is failed to appear");
         assertEquals(loginPage.getErrorTitle(), errorMSG);
     }
