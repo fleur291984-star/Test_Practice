@@ -21,8 +21,9 @@ public class ProductsTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     @Test
     public void checkGoodsAdded() {
-        loginPage.open();
-        loginPage.login(withAdminPermission());
+        loginPage
+                .open()
+                .login(withAdminPermission());
         assertTrue(productsPage.pageTitleDisplayed());
         assertEquals(productsPage.getGoodsQuantity(), 6);
         productsPage.addToCart();

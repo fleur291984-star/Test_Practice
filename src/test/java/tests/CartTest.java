@@ -3,6 +3,7 @@ package tests;
 import io.qameta.allure.*;
 import org.testng.annotations.Test;
 
+import static enums.TitleNaming.CART;
 import static org.testng.Assert.*;
 import static user.UserFactory.withAdminPermission;
 
@@ -17,10 +18,11 @@ public class CartTest extends BaseTest {
     @Issue("fleur291984-star")
     @Test
     public void checkCartTitle() {
-        loginPage.open();
-        loginPage.login(withAdminPermission());
+        loginPage
+                .open()
+                .login(withAdminPermission());
         productsPage.navigationPanel.cartContainerClick();
-        assertEquals(cartPage.getTitle(), "Your Cart");
+        assertEquals(cartPage.getTitle(), CART.getDisplayName());
     }
 
     @Feature("Корзина")
@@ -28,10 +30,12 @@ public class CartTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     @Test
     public void checkGoodsInCart() {
-        loginPage.open();
-        loginPage.login(withAdminPermission());
-        productsPage.addToCart(goodsName);
-        productsPage.navigationPanel.cartContainerClick();
+        loginPage
+                .open()
+                .login(withAdminPermission());
+        productsPage
+                .addToCart(goodsName)
+                .navigationPanel.cartContainerClick();
         assertFalse(cartPage.getProductNames().isEmpty());
         assertEquals(cartPage.getProductNames().size(), 1);
         assertTrue(cartPage.getProductNames().contains(goodsName));

@@ -17,10 +17,12 @@ public class CheckOverviewTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     @Test
     public void checkGoodsOverview() {
-        loginPage.open();
-        loginPage.login(withAdminPermission());
-        productsPage.addToCart(goodsName);
-        productsPage.navigationPanel.cartContainerClick();
+        loginPage
+                .open()
+                .login(withAdminPermission());
+        productsPage
+                .addToCart(goodsName)
+                .navigationPanel.cartContainerClick();
         cartPage.buttonCheckoutClick();
         checkoutPage.checkout(withCheckoutInfo());
         assertTrue(checkOverviewPage.getProductNameView().contains(goodsName));

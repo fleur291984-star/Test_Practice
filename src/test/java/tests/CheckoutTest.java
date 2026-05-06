@@ -5,6 +5,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import user.User;
 
+import static enums.TitleNaming.*;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 import static user.UserFactory.*;
@@ -17,12 +18,14 @@ public class CheckoutTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     @Test
     public void checkCheckoutTitle() {
-        loginPage.open();
-        loginPage.login(withAdminPermission());
-        productsPage.addToCart();
-        productsPage.navigationPanel.cartContainerClick();
+        loginPage
+                .open()
+                .login(withAdminPermission());
+        productsPage
+                .addToCart()
+                .navigationPanel.cartContainerClick();
         cartPage.buttonCheckoutClick();
-        assertEquals(checkoutPage.getTitle(), "Checkout: Your Information");
+        assertEquals(checkoutPage.getTitle(), CHECKOUT.getDisplayName());
     }
 
     @Feature("Оформление заказа (Checkout)")
@@ -30,13 +33,15 @@ public class CheckoutTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     @Test()
     public void checkout() {
-        loginPage.open();
-        loginPage.login(withAdminPermission());
-        productsPage.addToCart();
-        productsPage.navigationPanel.cartContainerClick();
+        loginPage
+                .open()
+                .login(withAdminPermission());
+        productsPage
+                .addToCart()
+                .navigationPanel.cartContainerClick();
         cartPage.buttonCheckoutClick();
         checkoutPage.checkout(withCheckoutInfo());
-        assertEquals(checkOverviewPage.getTitle(), "Checkout: Overview");
+        assertEquals(checkOverviewPage.getTitle(), CHECKOUTINFO.getDisplayName());
     }
 
     @Feature("Оформление заказа (Checkout)")
@@ -44,10 +49,12 @@ public class CheckoutTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     @Test(dataProvider = "incorrectCheckout")
     public void incorrectCheckout(User user, String errorMSG) {
-        loginPage.open();
-        loginPage.login(withAdminPermission());
-        productsPage.addToCart();
-        productsPage.navigationPanel.cartContainerClick();
+        loginPage
+                .open()
+                .login(withAdminPermission());
+        productsPage
+                .addToCart()
+                .navigationPanel.cartContainerClick();
         cartPage.buttonCheckoutClick();
         checkoutPage.checkout(user);
         assertTrue(checkoutPage.isErrorMsgDisplayed(), "The error message is failed to appear");

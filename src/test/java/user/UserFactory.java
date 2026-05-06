@@ -5,50 +5,69 @@ import utils.PropertyReader;
 public class UserFactory {
 
     public static User withAdminPermission() {
-        return new User(
-                PropertyReader.getProperty("saucedemoo.user"),
-                PropertyReader.getProperty("saucedemoo.password"));
+        return User.builder()
+                .login(PropertyReader.getProperty("saucedemoo.user"))
+                .password(PropertyReader.getProperty("saucedemoo.password"))
+                .build();
     }
 
     public static User withLockedPermission() {
-        return new User(
-                PropertyReader.getProperty("saucedemoo.locked.user"),
-                PropertyReader.getProperty("saucedemoo.password"));
+        return User.builder()
+                .login(PropertyReader.getProperty("saucedemoo.locked.user"))
+                .password(PropertyReader.getProperty("saucedemoo.password"))
+                .build();
     }
 
     public static User withIncorrectPermission() {
-        return new User(
-                PropertyReader.getProperty("saucedemoo.incorrect.user"),
-                PropertyReader.getProperty("saucedemoo.password"));
+        return User.builder()
+                .login(PropertyReader.getProperty("saucedemoo.incorrect.user"))
+                .password(PropertyReader.getProperty("saucedemoo.password"))
+                .build();
     }
 
     public static User withEmptyLogin() {
-        return new User("", PropertyReader.getProperty("saucedemoo.password"));
+        return User.builder()
+                .login("")
+                .password(PropertyReader.getProperty("saucedemoo.password"))
+                .build();
     }
 
     public static User withEmptyPassword() {
-        return new User(PropertyReader.getProperty("saucedemoo.user"), "");
+        return User.builder()
+                .login(PropertyReader.getProperty("saucedemoo.user"))
+                .password( "")
+                .build();
     }
 
     public static User withCheckoutInfo() {
-        return new User(
-                PropertyReader.getProperty("saucedemoo.first.name"),
-                PropertyReader.getProperty("saucedemoo.last.name"),
-                PropertyReader.getProperty("saucedemoo.postal.code"));
+        return User.builder()
+                .firstName(PropertyReader.getProperty("saucedemoo.first.name"))
+                .lastName(PropertyReader.getProperty("saucedemoo.last.name"))
+                .postalCode(PropertyReader.getProperty("saucedemoo.postal.code"))
+                .build();
     }
 
     public static User withEmptyFirstName() {
-        return new User("", PropertyReader.getProperty("saucedemoo.last.name"),
-                PropertyReader.getProperty("saucedemoo.postal.code"));
+        return User.builder()
+                .firstName("")
+                .lastName( PropertyReader.getProperty("saucedemoo.last.name"))
+                .postalCode(PropertyReader.getProperty("saucedemoo.postal.code"))
+                .build();
     }
 
     public static User withEmptyLastName() {
-        return new User(PropertyReader.getProperty("saucedemoo.first.name"),
-                "", PropertyReader.getProperty("saucedemoo.postal.code"));
+        return User.builder()
+                .firstName(PropertyReader.getProperty("saucedemoo.first.name"))
+                .lastName("")
+                .postalCode(PropertyReader.getProperty("saucedemoo.postal.code"))
+                .build();
     }
 
     public static User withEmptyPostalCode() {
-        return new User(PropertyReader.getProperty("saucedemoo.first.name"),
-                PropertyReader.getProperty("saucedemoo.last.name"), "");
+        return User.builder()
+                .firstName(PropertyReader.getProperty("saucedemoo.first.name"))
+                .lastName(PropertyReader.getProperty("saucedemoo.last.name"))
+                .postalCode( "")
+                .build();
     }
 }

@@ -26,7 +26,9 @@ public class NavigationPanel {
     }
 
     @Step("Нажать на элемент cartContainer")
-    public void cartContainerClick() {
+    public NavigationPanel cartContainerClick() {
         driver.findElement(cartContainer).click();
+
+        return  this;
     }
 }
